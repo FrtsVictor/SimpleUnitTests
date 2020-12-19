@@ -21,9 +21,9 @@ namespace test.Course.Domain.Test.Courses
 
             var expectedCourse = new {
                 name = "Info Course",
-                hours = 40,
+                hours = 0,
                 target = Target.Student,
-                price = 50
+                price = 0
             };
 
             var course = new CourseModel(
@@ -42,7 +42,7 @@ namespace test.Course.Domain.Test.Courses
         public void Course_EmptyOrNull_ReturnArgumentException(string invalidName)
         {
             var expectedCourse = new {
-                name = "Info Course",
+                name = "Test Course",
                 hours = (double)90,
                 target = Target.Student,
                 price = (double)100
@@ -57,7 +57,7 @@ namespace test.Course.Domain.Test.Courses
 
         [Theory]
         [InlineData(0)]
-        [InlineData(-25)]
+        [InlineData(-425)]
         public void Course_HoursLessThan1_ReturnArgumentException(double invalidHours)
         {
 
@@ -87,13 +87,13 @@ namespace test.Course.Domain.Test.Courses
             string errorMessage = "Invalid price";
             
             var expectedCourse = new {
-                name = "Info Course",
+                name = "Math Course",
                 hours = (double)90,
                 target = Target.Student,
                 price = (double)100
             };
 
-            var errorMessageDomain = Assert.Throws<ArgumentException>(()=>new CourseModel(  
+            var errorMessageDomain = Assert.Throws<ArgumentException>(() => new CourseModel(  
                                         expectedCourse.name, 
                                         invalidPrice, 
                                         expectedCourse.target, 
